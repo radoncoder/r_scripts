@@ -22,12 +22,16 @@
 library("sleuth")
 library("shiny")
 library("dplyr")
+
+#Grab user input in terms of what q-value to run
+
 userinput = function() {
   val = readline(prompt="Provde the q-value integer you wish to use for the wald test (e.g. 0.05, 0.1) ")
   print(val)
 }
 
 qi=userinput()
+
 
 #'R' syntax:
 #<- defines a variable; use "/" for file locations.  You can also just use =
@@ -64,8 +68,7 @@ so = sleuth_prep(s2c, ~condition, num_cores=1, target_mapping = t2g) #specify nu
 
 so = sleuth_fit (so)
 
-#Now find the object that sleuth_prep has created i.e. the "so" variable
-
+#Now find the object that sleuth_prep has created i.e. the "so" variable. Use the sink() function to put this into a file that can then be read.
 
 sink("mymod")
 models(so)
