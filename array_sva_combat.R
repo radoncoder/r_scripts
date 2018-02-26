@@ -45,6 +45,6 @@ modcombat = model.matrix(~1, data=pheno)
 combat_edata = ComBat(dat=as.matrix(edata), batch=batch, mod=mod0, par.prior=TRUE, prior.plots = FALSE)
 
 pvalues = f.pvalue(combat_edata,mod,mod0)
-qvalues = p.adjust(pValuesComBat, method="BH")
+qvalues = p.adjust(pvalues, method="BH")
 write.csv(as.table(qvalues),"gsemerge_qvalues.csv")
 write.csv(as.table(pvalues),"gsemerge_pvalues.csv")
